@@ -9,6 +9,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <editorFloatingToolbarProvider implementation="com.example.mdgfm.MarkdownToolbarProvider"/>
+    <projectService serviceImplementation="com.example.mdgfm.core.BatchService"/>
   </extensions>
 
   <actions>
@@ -28,5 +29,14 @@
     <action id="MDGFM.Mermaid" class="com.example.mdgfm.actions.MermaidAction" text="Mermaid"/>
     <action id="MDGFM.Details" class="com.example.mdgfm.actions.DetailsAction" text="Details"/>
     <action id="MDGFM.DiffBlock" class="com.example.mdgfm.actions.DiffBlockAction" text="Diff Block"/>
+    <action id="MDGFM.Mention" class="com.example.mdgfm.actions.MentionAction" text="Mention"/>
+    <action id="MDGFM.IssueRef" class="com.example.mdgfm.actions.IssueRefAction" text="Issue/PR Ref"/>
+    <action id="MDGFM.CommitRef" class="com.example.mdgfm.actions.CommitRefAction" text="Commit Ref"/>
+    <action id="MDGFM.Emoji" class="com.example.mdgfm.actions.EmojiAction" text="Emoji"/>
+    <action id="MDGFM.Sup" class="com.example.mdgfm.actions.SupAction" text="Sup"/>
+    <action id="MDGFM.Sub" class="com.example.mdgfm.actions.SubAction" text="Sub"/>
+    <action id="MDGFM.Footnote" class="com.example.mdgfm.actions.FootnoteAction" text="Footnote"/>
+    <action id="MDGFM.BatchAddSuggestion" class="com.example.mdgfm.actions.BatchAddSuggestionAction" text="Batch Add Suggestion"/>
+    <action id="MDGFM.BatchInsertSuggestions" class="com.example.mdgfm.actions.BatchInsertSuggestionsAction" text="Batch Insert Suggestions"/>
   </actions>
 </idea-plugin>

@@ -55,4 +55,42 @@ public class MdOpsTest {
     void tableSnippet() {
         assertTrue(MdOps.table().contains("| Col1 |"));
     }
+
+    @Test
+    void mention() {
+        assertEquals("@user", MdOps.mention("user"));
+        assertEquals("@user", MdOps.mention("@user"));
+    }
+
+    @Test
+    void issueRef() {
+        assertEquals("#123", MdOps.issueRef("123"));
+        assertEquals("#123", MdOps.issueRef("#123"));
+    }
+
+    @Test
+    void commitRef() {
+        assertEquals("commit:abc", MdOps.commitRef("abc"));
+        assertEquals("commit:abc", MdOps.commitRef("commit:abc"));
+    }
+
+    @Test
+    void emojiToggle() {
+        assertEquals(":smile:", MdOps.toggleWrap("smile", ":"));
+        assertEquals("smile", MdOps.toggleWrap(":smile:", ":"));
+    }
+
+    @Test
+    void supSubToggle() {
+        assertEquals("<sup>x</sup>", MdOps.toggleTag("x", "sup"));
+        assertEquals("x", MdOps.toggleTag("<sup>x</sup>", "sup"));
+        assertEquals("<sub>x</sub>", MdOps.toggleTag("x", "sub"));
+        assertEquals("x", MdOps.toggleTag("<sub>x</sub>", "sub"));
+    }
+
+    @Test
+    void footnoteToggle() {
+        assertEquals("[^1]", MdOps.footnote("1"));
+        assertEquals("1", MdOps.footnote("[^1]"));
+    }
 }
