@@ -40,4 +40,40 @@ public final class MdOps {
     public static String link(String text, String url) {
         return "[" + text + "](" + url + ")";
     }
+
+    public static String prefixIfMissing(String text, String prefix) {
+        return text.startsWith(prefix) ? text : prefix + text;
+    }
+
+    public static String mention(String text) {
+        return prefixIfMissing(text, "@");
+    }
+
+    public static String issueRef(String text) {
+        return prefixIfMissing(text, "#");
+    }
+
+    public static String commitRef(String text) {
+        return prefixIfMissing(text, "commit:");
+    }
+
+    public static String toggleTag(String text, String tag) {
+        String open = "<" + tag + ">";
+        String close = "</" + tag + ">";
+        String trimmed = text.trim();
+        if (trimmed.startsWith(open) && trimmed.endsWith(close) && trimmed.length() >= open.length() + close.length()) {
+            String core = trimmed.substring(open.length(), trimmed.length() - close.length());
+            return text.replace(trimmed, core);
+        }
+        return open + text + close;
+    }
+
+    public static String footnote(String text) {
+        String trimmed = text.trim();
+        if (trimmed.startsWith("[^") && trimmed.endsWith("]") && trimmed.length() >= 3) {
+            String core = trimmed.substring(2, trimmed.length() - 1);
+            return text.replace(trimmed, core);
+        }
+        return "[^" + text + "]";
+    }
 }

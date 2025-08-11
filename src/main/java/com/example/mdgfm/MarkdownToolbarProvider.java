@@ -29,20 +29,27 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
             "MDGFM.Link",
             "MDGFM.Mermaid",
             "MDGFM.Details",
-            "MDGFM.DiffBlock"
+            "MDGFM.DiffBlock",
+            "MDGFM.Mention",
+            "MDGFM.IssueRef",
+            "MDGFM.CommitRef",
+            "MDGFM.Emoji",
+            "MDGFM.Sup",
+            "MDGFM.Sub",
+            "MDGFM.Footnote",
+            "MDGFM.BatchAddSuggestion",
+            "MDGFM.BatchInsertSuggestions"
     );
 
     public MarkdownToolbarProvider() {
         super("MDGFM.Toolbar");
     }
 
-    @Override
     protected void registerActions(@NotNull List<? super AnAction> actions, @NotNull Editor editor) {
         ActionManager am = ActionManager.getInstance();
         ACTION_IDS.stream().map(am::getAction).forEach(actions::add);
     }
 
-    @Override
     protected boolean isApplicable(@NotNull Editor editor) {
         return editor.getDocument().isWritable();
     }
