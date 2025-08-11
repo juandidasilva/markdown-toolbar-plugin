@@ -15,6 +15,7 @@ intellij {
 
 tasks.patchPluginXml {
   sinceBuild = '231'
+  untilBuild = '999.*'
 }
 
 java {
