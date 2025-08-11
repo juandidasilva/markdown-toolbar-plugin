@@ -13,6 +13,33 @@
   </extensions>
 
   <actions>
+    <group id="MDGFM.Toolbar">
+      <action id="MDGFM.Bold"/>
+      <action id="MDGFM.Italic"/>
+      <action id="MDGFM.InlineCode"/>
+      <action id="MDGFM.Strike"/>
+      <action id="MDGFM.CodeBlock"/>
+      <action id="MDGFM.Heading"/>
+      <action id="MDGFM.BulletList"/>
+      <action id="MDGFM.OrderedList"/>
+      <action id="MDGFM.Quote"/>
+      <action id="MDGFM.TaskList"/>
+      <action id="MDGFM.Suggestion"/>
+      <action id="MDGFM.Table"/>
+      <action id="MDGFM.Link"/>
+      <action id="MDGFM.Mermaid"/>
+      <action id="MDGFM.Details"/>
+      <action id="MDGFM.DiffBlock"/>
+      <action id="MDGFM.Mention"/>
+      <action id="MDGFM.IssueRef"/>
+      <action id="MDGFM.CommitRef"/>
+      <action id="MDGFM.Emoji"/>
+      <action id="MDGFM.Sup"/>
+      <action id="MDGFM.Sub"/>
+      <action id="MDGFM.Footnote"/>
+      <action id="MDGFM.BatchAddSuggestion"/>
+      <action id="MDGFM.BatchInsertSuggestions"/>
+    </group>
     <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" description="**bold**"/>
     <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" description="*italic*"/>
     <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" description="`code`"/>
