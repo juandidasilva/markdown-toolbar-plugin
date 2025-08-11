@@ -14,56 +14,31 @@
 
   <actions>
     <group id="MDGFM.Toolbar">
-      <action id="MDGFM.Bold"/>
-      <action id="MDGFM.Italic"/>
-      <action id="MDGFM.InlineCode"/>
-      <action id="MDGFM.Strike"/>
-      <action id="MDGFM.CodeBlock"/>
-      <action id="MDGFM.Heading"/>
-      <action id="MDGFM.BulletList"/>
-      <action id="MDGFM.OrderedList"/>
-      <action id="MDGFM.Quote"/>
-      <action id="MDGFM.TaskList"/>
-      <action id="MDGFM.Suggestion"/>
-      <action id="MDGFM.Table"/>
-      <action id="MDGFM.Link"/>
-      <action id="MDGFM.Mermaid"/>
-      <action id="MDGFM.Details"/>
-      <action id="MDGFM.DiffBlock"/>
-      <action id="MDGFM.Mention"/>
-      <action id="MDGFM.IssueRef"/>
-      <action id="MDGFM.CommitRef"/>
-      <action id="MDGFM.Emoji"/>
-      <action id="MDGFM.Sup"/>
-      <action id="MDGFM.Sub"/>
-      <action id="MDGFM.Footnote"/>
-      <action id="MDGFM.BatchAddSuggestion"/>
-      <action id="MDGFM.BatchInsertSuggestions"/>
+      <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" description="**bold**"/>
+      <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" description="*italic*"/>
+      <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" description="`code`"/>
+      <action id="MDGFM.Strike" class="com.example.mdgfm.actions.StrikeAction" text="Strike"/>
+      <action id="MDGFM.CodeBlock" class="com.example.mdgfm.actions.CodeBlockAction" text="Code Block" description="```lang```"/>
+      <action id="MDGFM.Heading" class="com.example.mdgfm.actions.HeadingCycleAction" text="Heading"/>
+      <action id="MDGFM.BulletList" class="com.example.mdgfm.actions.BulletListAction" text="Bulleted List"/>
+      <action id="MDGFM.OrderedList" class="com.example.mdgfm.actions.OrderedListAction" text="Ordered List"/>
+      <action id="MDGFM.Quote" class="com.example.mdgfm.actions.QuoteAction" text="Quote"/>
+      <action id="MDGFM.TaskList" class="com.example.mdgfm.actions.TaskListAction" text="Task List"/>
+      <action id="MDGFM.Suggestion" class="com.example.mdgfm.actions.SuggestionAction" text="Suggestion"/>
+      <action id="MDGFM.Table" class="com.example.mdgfm.actions.TableAction" text="Table"/>
+      <action id="MDGFM.Link" class="com.example.mdgfm.actions.LinkAction" text="Link"/>
+      <action id="MDGFM.Mermaid" class="com.example.mdgfm.actions.MermaidAction" text="Mermaid"/>
+      <action id="MDGFM.Details" class="com.example.mdgfm.actions.DetailsAction" text="Details"/>
+      <action id="MDGFM.DiffBlock" class="com.example.mdgfm.actions.DiffBlockAction" text="Diff Block"/>
+      <action id="MDGFM.Mention" class="com.example.mdgfm.actions.MentionAction" text="Mention"/>
+      <action id="MDGFM.IssueRef" class="com.example.mdgfm.actions.IssueRefAction" text="Issue/PR Ref"/>
+      <action id="MDGFM.CommitRef" class="com.example.mdgfm.actions.CommitRefAction" text="Commit Ref"/>
+      <action id="MDGFM.Emoji" class="com.example.mdgfm.actions.EmojiAction" text="Emoji"/>
+      <action id="MDGFM.Sup" class="com.example.mdgfm.actions.SupAction" text="Sup"/>
+      <action id="MDGFM.Sub" class="com.example.mdgfm.actions.SubAction" text="Sub"/>
+      <action id="MDGFM.Footnote" class="com.example.mdgfm.actions.FootnoteAction" text="Footnote"/>
+      <action id="MDGFM.BatchAddSuggestion" class="com.example.mdgfm.actions.BatchAddSuggestionAction" text="Batch Add Suggestion"/>
+      <action id="MDGFM.BatchInsertSuggestions" class="com.example.mdgfm.actions.BatchInsertSuggestionsAction" text="Batch Insert Suggestions"/>
     </group>
-    <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" description="**bold**"/>
-    <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" description="*italic*"/>
-    <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" description="`code`"/>
-    <action id="MDGFM.Strike" class="com.example.mdgfm.actions.StrikeAction" text="Strike"/>
-    <action id="MDGFM.CodeBlock" class="com.example.mdgfm.actions.CodeBlockAction" text="Code Block" description="```lang```"/>
-    <action id="MDGFM.Heading" class="com.example.mdgfm.actions.HeadingCycleAction" text="Heading"/>
-    <action id="MDGFM.BulletList" class="com.example.mdgfm.actions.BulletListAction" text="Bulleted List"/>
-    <action id="MDGFM.OrderedList" class="com.example.mdgfm.actions.OrderedListAction" text="Ordered List"/>
-    <action id="MDGFM.Quote" class="com.example.mdgfm.actions.QuoteAction" text="Quote"/>
-    <action id="MDGFM.TaskList" class="com.example.mdgfm.actions.TaskListAction" text="Task List"/>
-    <action id="MDGFM.Suggestion" class="com.example.mdgfm.actions.SuggestionAction" text="Suggestion"/>
-    <action id="MDGFM.Table" class="com.example.mdgfm.actions.TableAction" text="Table"/>
-    <action id="MDGFM.Link" class="com.example.mdgfm.actions.LinkAction" text="Link"/>
-    <action id="MDGFM.Mermaid" class="com.example.mdgfm.actions.MermaidAction" text="Mermaid"/>
-    <action id="MDGFM.Details" class="com.example.mdgfm.actions.DetailsAction" text="Details"/>
-    <action id="MDGFM.DiffBlock" class="com.example.mdgfm.actions.DiffBlockAction" text="Diff Block"/>
-    <action id="MDGFM.Mention" class="com.example.mdgfm.actions.MentionAction" text="Mention"/>
-    <action id="MDGFM.IssueRef" class="com.example.mdgfm.actions.IssueRefAction" text="Issue/PR Ref"/>
-    <action id="MDGFM.CommitRef" class="com.example.mdgfm.actions.CommitRefAction" text="Commit Ref"/>
-    <action id="MDGFM.Emoji" class="com.example.mdgfm.actions.EmojiAction" text="Emoji"/>
-    <action id="MDGFM.Sup" class="com.example.mdgfm.actions.SupAction" text="Sup"/>
-    <action id="MDGFM.Sub" class="com.example.mdgfm.actions.SubAction" text="Sub"/>
-    <action id="MDGFM.Footnote" class="com.example.mdgfm.actions.FootnoteAction" text="Footnote"/>
-    <action id="MDGFM.BatchAddSuggestion" class="com.example.mdgfm.actions.BatchAddSuggestionAction" text="Batch Add Suggestion"/>
-    <action id="MDGFM.BatchInsertSuggestions" class="com.example.mdgfm.actions.BatchInsertSuggestionsAction" text="Batch Insert Suggestions"/>
   </actions>
 </idea-plugin>
