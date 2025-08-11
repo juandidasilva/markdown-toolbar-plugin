@@ -1,1 +1,9 @@
+pluginManagement {
+  repositories {
+    maven { url 'https://cache-redirector.jetbrains.com/plugins.gradle.org/m2' }
+    maven { url 'https://maven.pkg.jetbrains.space/public/p/gradle-plugins/gradle-plugins' }
+    gradlePluginPortal()
+  }
+}
+
 rootProject.name = 'markdown-gfm-toolbar'
