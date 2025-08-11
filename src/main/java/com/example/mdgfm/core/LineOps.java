@@ -46,11 +46,13 @@ public final class LineOps {
 
     public static String toggleTask(String text) {
         String[] lines = text.split("\n", -1);
-        Pattern p = Pattern.compile("^\\s*- \\[\\[( |x|X)\\]\\] ");
-        boolean all = Arrays.stream(lines).filter(l -> !l.isBlank()).allMatch(l -> p.matcher(l).find());
+        Pattern p = Pattern.compile("^\\s*- \\[( |x|X)\\] ");
+        boolean all = Arrays.stream(lines)
+            .filter(l -> !l.isBlank())
+            .allMatch(l -> p.matcher(l).find());
         return Arrays.stream(lines).map(l -> {
             if (l.isBlank()) return l;
-            if (all) return l.replaceFirst("^\\s*- \\[\\[( |x|X)\\]\\] ", "- ");
+            if (all) return l.replaceFirst("^\\s*- \\[( |x|X)\\] ", "");
             return "- [ ] " + l;
         }).collect(Collectors.joining("\n"));
     }
