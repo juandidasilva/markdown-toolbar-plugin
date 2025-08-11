@@ -46,4 +46,9 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
     protected boolean isApplicable(@NotNull Editor editor) {
         return editor.getDocument().isWritable();
     }
+
+    @Override
+    public boolean getAutoHideable() {
+        return true;
+    }
 }
