@@ -12,6 +12,7 @@ import com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager;
 import com.intellij.openapi.editor.toolbar.floating.AbstractFloatingToolbarProvider;
 import com.intellij.openapi.editor.toolbar.floating.FloatingToolbarComponent;
 import com.intellij.openapi.util.Disposer;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.EditorTextField;
 import com.intellij.util.ui.UIUtil;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +41,11 @@ public class PRToolbarProvider extends AbstractFloatingToolbarProvider {
         }
         if (editor == null || !editor.getDocument().isWritable()) {
             return false;
+        }
+
+        VirtualFile file = CommonDataKeys.VIRTUAL_FILE.getData(dataContext);
+        if (file != null && "diff".equalsIgnoreCase(file.getExtension())) {
+            return true;
         }
 
         JComponent cc = editor.getContentComponent();

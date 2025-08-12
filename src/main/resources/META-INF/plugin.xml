@@ -83,12 +83,13 @@
     <!-- Toolbar groups -->
     <group id="MDGFM.Toolbar.Markdown" text="Markdown Toolbar" popup="false" />
     <group id="MDGFM.Toolbar.PR.Primary" text="Markdown PR Toolbar" popup="false" />
-    <group id="MDGFM.Toolbar.PR.More" text="More" popup="true" icon="/icons/more.svg" />
+    <group id="MDGFM.Toolbar.PR.More" text="More" popup="true" icon="/icons/more.svg">
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </group>
 
     <!-- Include More group in PR primary toolbar with a separator -->
     <action id="MDGFM.PR.Separator" class="com.intellij.openapi.actionSystem.Separator">
       <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
     </action>
-    <add-to-group action-id="MDGFM.Toolbar.PR.More" group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
   </actions>
 </idea-plugin>
