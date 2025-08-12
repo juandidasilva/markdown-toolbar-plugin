@@ -9,34 +9,86 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <editorFloatingToolbarProvider implementation="com.example.mdgfm.MarkdownToolbarProvider"/>
+    <editorFloatingToolbarProvider implementation="com.example.mdgfm.PRToolbarProvider"/>
     <projectService serviceImplementation="com.example.mdgfm.core.BatchService"/>
   </extensions>
 
   <actions>
-    <!-- Popup group containing secondary actions -->
-    <group id="MDGFM.Toolbar.More" text="More" popup="true" icon="/icons/more.svg">
-      <action id="MDGFM.TaskList" class="com.example.mdgfm.actions.TaskListAction" text="Task List" icon="/icons/task.svg"/>
-      <action id="MDGFM.Heading" class="com.example.mdgfm.actions.HeadingCycleAction" text="Heading" icon="/icons/h1.svg"/>
-      <action id="MDGFM.BulletList" class="com.example.mdgfm.actions.BulletListAction" text="Bulleted" icon="/icons/list-bullet.svg"/>
-      <action id="MDGFM.OrderedList" class="com.example.mdgfm.actions.OrderedListAction" text="Ordered" icon="/icons/list-ordered.svg"/>
-      <action id="MDGFM.Quote" class="com.example.mdgfm.actions.QuoteAction" text="Quote" icon="/icons/quote.svg"/>
-      <action id="MDGFM.Table" class="com.example.mdgfm.actions.TableAction" text="Table" icon="/icons/table.svg"/>
-      <action id="MDGFM.Link" class="com.example.mdgfm.actions.LinkAction" text="Link" icon="/icons/link.svg"/>
-      <action id="MDGFM.Mermaid" class="com.example.mdgfm.actions.MermaidAction" text="Mermaid" icon="/icons/mermaid.svg"/>
-      <action id="MDGFM.Details" class="com.example.mdgfm.actions.DetailsAction" text="Details" icon="/icons/details.svg"/>
-      <action id="MDGFM.CodeBlock" class="com.example.mdgfm.actions.CodeBlockAction" text="Code Block" icon="/icons/codeblock.svg"/>
-      <action id="MDGFM.DiffBlock" class="com.example.mdgfm.actions.DiffBlockAction" text="Diff" icon="/icons/diff.svg"/>
-    </group>
+    <!-- Action definitions -->
+    <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" icon="/icons/bold.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" icon="/icons/italic.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <action id="MDGFM.Strike" class="com.example.mdgfm.actions.StrikeAction" text="Strike" icon="/icons/strike.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" icon="/icons/code.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <action id="MDGFM.Suggestion" class="com.example.mdgfm.actions.SuggestionAction" text="Suggestion" icon="/icons/suggestion.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <action id="MDGFM.TaskList" class="com.example.mdgfm.actions.TaskListAction" text="Task List" icon="/icons/task.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Heading" class="com.example.mdgfm.actions.HeadingCycleAction" text="Heading" icon="/icons/h1.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.BulletList" class="com.example.mdgfm.actions.BulletListAction" text="Bulleted" icon="/icons/list-bullet.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.OrderedList" class="com.example.mdgfm.actions.OrderedListAction" text="Ordered" icon="/icons/list-ordered.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Quote" class="com.example.mdgfm.actions.QuoteAction" text="Quote" icon="/icons/quote.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Table" class="com.example.mdgfm.actions.TableAction" text="Table" icon="/icons/table.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Link" class="com.example.mdgfm.actions.LinkAction" text="Link" icon="/icons/link.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Mermaid" class="com.example.mdgfm.actions.MermaidAction" text="Mermaid" icon="/icons/mermaid.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.Details" class="com.example.mdgfm.actions.DetailsAction" text="Details" icon="/icons/details.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.CodeBlock" class="com.example.mdgfm.actions.CodeBlockAction" text="Code Block" icon="/icons/codeblock.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
+    <action id="MDGFM.DiffBlock" class="com.example.mdgfm.actions.DiffBlockAction" text="Diff" icon="/icons/diff.svg">
+      <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
+      <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
+    </action>
 
-    <!-- Primary inline toolbar with key actions -->
-    <group id="MDGFM.Toolbar.Primary" text="Markdown GFM (Primary)" popup="false">
-      <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" icon="/icons/bold.svg"/>
-      <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" icon="/icons/italic.svg"/>
-      <action id="MDGFM.Strike" class="com.example.mdgfm.actions.StrikeAction" text="Strike" icon="/icons/strike.svg"/>
-      <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" icon="/icons/code.svg"/>
-      <action id="MDGFM.Suggestion" class="com.example.mdgfm.actions.SuggestionAction" text="Suggestion" icon="/icons/suggestion.svg"/>
-      <separator/>
-      <reference id="MDGFM.Toolbar.More"/>
-    </group>
+    <!-- Toolbar groups -->
+    <group id="MDGFM.Toolbar.Markdown" text="Markdown Toolbar" popup="false" />
+    <group id="MDGFM.Toolbar.PR.Primary" text="Markdown PR Toolbar" popup="false" />
+    <group id="MDGFM.Toolbar.PR.More" text="More" popup="true" icon="/icons/more.svg" />
+
+    <!-- Include More group in PR primary toolbar with a separator -->
+    <action id="MDGFM.PR.Separator" class="com.intellij.openapi.actionSystem.Separator">
+      <add-to-group group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
+    </action>
+    <add-to-group action-id="MDGFM.Toolbar.PR.More" group-id="MDGFM.Toolbar.PR.Primary" anchor="last" />
   </actions>
 </idea-plugin>
