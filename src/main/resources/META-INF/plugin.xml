@@ -13,7 +13,7 @@
   </extensions>
 
   <actions>
-    <group id="MDGFM.Toolbar">
+    <group id="MDGFM.Toolbar" text="Markdown GFM Toolbar" popup="false">
       <action id="MDGFM.Bold" class="com.example.mdgfm.actions.BoldAction" text="Bold" description="**bold**"/>
       <action id="MDGFM.Italic" class="com.example.mdgfm.actions.ItalicAction" text="Italic" description="*italic*"/>
       <action id="MDGFM.InlineCode" class="com.example.mdgfm.actions.InlineCodeAction" text="Code" description="`code`"/>

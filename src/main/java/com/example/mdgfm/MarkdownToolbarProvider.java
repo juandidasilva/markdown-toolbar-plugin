@@ -20,6 +20,9 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
     @Override
     public boolean isApplicable(@NotNull DataContext dataContext) {
         Editor editor = CommonDataKeys.EDITOR.getData(dataContext);
+        if (editor == null) {
+            editor = CommonDataKeys.EDITOR_EVEN_IF_INACTIVE.getData(dataContext);
+        }
         return editor != null && editor.getDocument().isWritable();
     }
 
