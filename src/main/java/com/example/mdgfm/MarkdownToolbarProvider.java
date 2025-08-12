@@ -7,12 +7,17 @@ import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.EditorKind;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager;
 import com.intellij.openapi.editor.toolbar.floating.AbstractFloatingToolbarProvider;
 import com.intellij.openapi.editor.toolbar.floating.FloatingToolbarComponent;
 import com.intellij.openapi.util.Disposer;
+import com.intellij.ui.EditorTextField;
+import com.intellij.util.ui.UIUtil;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
 
     public MarkdownToolbarProvider() {
-        super("MDGFM.Toolbar");
+        super("MDGFM.Toolbar.Primary");
     }
 
     @Override
@@ -46,10 +51,16 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
             return;
         }
 
-        ActionGroup group = (ActionGroup) ActionManager.getInstance().getAction("MDGFM.Toolbar");
+        // Allow built-in floating toolbar for regular markdown editors.
+        if (!shouldOverlay(editor)) {
+            return;
+        }
+
+        ActionGroup group = (ActionGroup) ActionManager.getInstance().getAction("MDGFM.Toolbar.Primary");
         ActionToolbar toolbar = ActionManager.getInstance()
                 .createActionToolbar("MDGFM.InlineToolbar", group, true);
         toolbar.setTargetComponent(editor.getContentComponent());
+        toolbar.setReservePlaceAutoPopupIcon(true);
 
         JPanel inline = new JPanel(new BorderLayout());
         inline.setOpaque(false);
@@ -58,7 +69,6 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
         EditorEmbeddedComponentManager manager = EditorEmbeddedComponentManager.getInstance();
         EditorEmbeddedComponentManager.Properties props =
                 new EditorEmbeddedComponentManager.Properties(null, null, false, true, 0, 0);
-        // Try to use newer anchoring and layering APIs if present
         try {
             Class<?> anchorType = Class.forName(
                     "com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager$AnchorType");
@@ -72,6 +82,24 @@ public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
 
         Disposable disposable = manager.addComponent((EditorEx) editor, inline, props);
         Disposer.register(parentDisposable, disposable);
+    }
+
+    private static boolean shouldOverlay(@NotNull Editor editor) {
+        boolean isDiff = editor.getEditorKind() == EditorKind.DIFF;
+
+        JComponent cc = editor.getContentComponent();
+        boolean inEditorTextField = UIUtil.getParentOfType(EditorTextField.class, cc) != null;
+        boolean looksLikeCodeReview = false;
+        for (Component p = cc; p != null; p = p.getParent()) {
+            String cn = p.getClass().getName().toLowerCase();
+            if (cn.contains("codereview") || cn.contains("code.review") || cn.contains("github")) {
+                looksLikeCodeReview = true;
+                break;
+            }
+        }
+        boolean isPrCommentField = inEditorTextField && looksLikeCodeReview;
+
+        return isDiff || isPrCommentField;
     }
 
     @Override
