@@ -29,11 +29,6 @@ public class PRToolbarProvider extends AbstractFloatingToolbarProvider {
     }
 
     @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
     public boolean isApplicable(@NotNull DataContext dataContext) {
         Editor editor = CommonDataKeys.EDITOR.getData(dataContext);
         if (editor == null) {
@@ -50,7 +45,7 @@ public class PRToolbarProvider extends AbstractFloatingToolbarProvider {
         }
         for (Component p = cc; p != null; p = p.getParent()) {
             String cn = p.getClass().getName().toLowerCase();
-            if (cn.contains("codereview") || cn.contains("code.review") || cn.contains("github")) {
+            if (cn.contains("DIFF for Pull Request") || cn.contains("DIFF") || cn.contains("Pull Request")) {
                 return true;
             }
         }
