@@ -1,33 +1,46 @@
-# Markdown PowerBar *(nombre sugerido)*
+# GitHub PR Markdown Toolbar
 
-**Tu aliado para escribir Markdown sin fricción dentro de JetBrains.**  
-Domina tus revisiones de código y documentos con una barra de herramientas intuitiva que aparece justo donde la necesitas.
+**Your ally for frictionless Markdown and PR comments inside IntelliJ IDEA.**
+Master your code reviews and documentation with an intuitive toolbar that appears right where you need it.
 
-## ¿Por qué otro plugin más?
+## Why this plugin?
 
-- **Acelera tu flujo de trabajo**: olvida los atajos enrevesados y dale formato a tu Markdown con un clic.
-- **Gana claridad en tus PRs**: tus ideas brillan cuando la presentación es impecable.
-- **Únete a quienes ya simplificaron su día a día**: la comunidad va creciendo y tu voz puede guiar el rumbo.
+- **Speed up your workflow**: Forget complicated shortcuts—format your Markdown with a single click.
+- **Make your PRs shine**: Clear, well-formatted comments help your ideas stand out in every review.
+- **Join a growing community**: Many developers have already simplified their code review experience, your feedback can help shape the future.
 
-## Características principales
+## Key Features
 
-- Botones para **negrita**, *cursiva*, ~~tachado~~, código en línea y más.
-- Soporte para listas, tablas, enlaces, bloques de código, Mermaid, detalles y citas.
-- Atajo `Ctrl + Alt + M` para mostrar la barra si el entorno la oculta.
+- Buttons for **bold**, *italic*, ~~strikethrough~~, `inline-code`, and more.
+- Support for lists, tables, links, code blocks, Mermaid diagrams, details, and quotes.
+- Shortcut: `Ctrl + Alt + M` on Windows or `Cmd + Opt + M` on Mac to open the toolbar if it’s hidden.
 
-## Instalación
+ Preview
 
-1. Clona este repositorio.
-2. Ejecuta `gradle build` para generar el plugin.
-3. Importa el artefacto `build/distributions/*.zip` en tu IDE JetBrains (Settings → Plugins → Install plugin from disk).
+ - Markdown toolbar in .md files (floating)
+   - Appears automatically when editing a writable `.md` file.
+   - Context-aware selection helpers for inline and block operations.
 
-## Contribuye y hazlo tuyo
+   ![Markdown toolbar (light)](docs/screenshots/markdown-toolbar-light.png)
+   ![Markdown toolbar (dark)](docs/screenshots/markdown-toolbar-dark.png)
 
-Apreciamos cada comentario, issue o pull request. Cuéntanos qué necesitarías y encontraremos una solución juntos.  
-Tu experiencia es la brújula que orienta la evolución del proyecto.
+ - PR toolbar over the Diff viewer (GitHub)
+   - Anchored visually over the diff editor.
+   - Actions are targeted to the nearest PR comment field (EditorTextField).
 
-## Nombre del proyecto
+   ![PR toolbar over diff](docs/screenshots/pr-diff-toolbar.png)
 
-El repositorio se llama hoy **markdown-toolbar-plugin**, pero creemos que **Markdown PowerBar** comunica mejor su propósito.  
-¿Tienes un nombre aún más inspirador? ¡Estamos listos para escucharte!
+ - “More” group (secondary actions)
+   - Additional Markdown elements grouped under a popup.
 
+   ![More group menu](docs/screenshots/more-group.png)
+
+ - Popup fallback (when embedding is unavailable)
+   - Use the shortcut to open the toolbar as a popup: `Ctrl + Alt + M` (Windows) / `Cmd + Opt + M` (Mac).
+
+   ![Toolbar popup](docs/screenshots/popup-action.png)
+
+## Contribute and Make It Yours
+
+We value every comment, issue, and pull request. Tell us what you need and let’s build the best Markdown experience together.
+Your feedback guides the evolution of this project.
