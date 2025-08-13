@@ -1,105 +1,33 @@
 package com.example.mdgfm;
 
-import com.intellij.openapi.Disposable;
-import com.intellij.openapi.actionSystem.ActionGroup;
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.EditorKind;
-import com.intellij.openapi.editor.ex.EditorEx;
-import com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager;
 import com.intellij.openapi.editor.toolbar.floating.AbstractFloatingToolbarProvider;
-import com.intellij.openapi.editor.toolbar.floating.FloatingToolbarComponent;
-import com.intellij.openapi.util.Disposer;
-import com.intellij.ui.EditorTextField;
-import com.intellij.util.ui.UIUtil;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Provides floating toolbar with Markdown/GFM actions.
+ * Floating toolbar provider for Markdown files.
  */
 public class MarkdownToolbarProvider extends AbstractFloatingToolbarProvider {
 
     public MarkdownToolbarProvider() {
-        super("MDGFM.Toolbar.Primary");
+        super("MDGFM.Toolbar.Markdown");
+    }
+
+    public boolean isEnabledByDefault() {
+        return true;
     }
 
     @Override
     public boolean isApplicable(@NotNull DataContext dataContext) {
         Editor editor = CommonDataKeys.EDITOR.getData(dataContext);
-        if (editor == null) {
-            editor = CommonDataKeys.EDITOR_EVEN_IF_INACTIVE.getData(dataContext);
-        }
-        return editor != null && editor.getDocument().isWritable();
-    }
-
-    @Override
-    public void register(@NotNull DataContext dataContext,
-                         @NotNull FloatingToolbarComponent component,
-                         @NotNull Disposable parentDisposable) {
-        Editor editor = CommonDataKeys.EDITOR.getData(dataContext);
-        if (editor == null) {
-            editor = CommonDataKeys.EDITOR_EVEN_IF_INACTIVE.getData(dataContext);
-        }
         if (editor == null || !editor.getDocument().isWritable()) {
-            return;
+            return false;
         }
-
-        // Allow built-in floating toolbar for regular markdown editors.
-        if (!shouldOverlay(editor)) {
-            return;
-        }
-
-        ActionGroup group = (ActionGroup) ActionManager.getInstance().getAction("MDGFM.Toolbar.Primary");
-        ActionToolbar toolbar = ActionManager.getInstance()
-                .createActionToolbar("MDGFM.InlineToolbar", group, true);
-        toolbar.setTargetComponent(editor.getContentComponent());
-        toolbar.setReservePlaceAutoPopupIcon(true);
-
-        JPanel inline = new JPanel(new BorderLayout());
-        inline.setOpaque(false);
-        inline.add(toolbar.getComponent(), BorderLayout.CENTER);
-
-        EditorEmbeddedComponentManager manager = EditorEmbeddedComponentManager.getInstance();
-        EditorEmbeddedComponentManager.Properties props =
-                new EditorEmbeddedComponentManager.Properties(null, null, false, true, 0, 0);
-        try {
-            Class<?> anchorType = Class.forName(
-                    "com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager$AnchorType");
-            Object up = anchorType.getField("UP").get(null);
-            props.getClass().getMethod("setAnchored", anchorType).invoke(props, up);
-
-            int layer = EditorEmbeddedComponentManager.class.getField("LAYER_POPUP").getInt(null);
-            props.getClass().getMethod("setLayer", int.class).invoke(props, layer);
-        } catch (Throwable ignored) {
-        }
-
-        Disposable disposable = manager.addComponent((EditorEx) editor, inline, props);
-        Disposer.register(parentDisposable, disposable);
-    }
-
-    private static boolean shouldOverlay(@NotNull Editor editor) {
-        boolean isDiff = editor.getEditorKind() == EditorKind.DIFF;
-
-        JComponent cc = editor.getContentComponent();
-        boolean inEditorTextField = UIUtil.getParentOfType(EditorTextField.class, cc) != null;
-        boolean looksLikeCodeReview = false;
-        for (Component p = cc; p != null; p = p.getParent()) {
-            String cn = p.getClass().getName().toLowerCase();
-            if (cn.contains("codereview") || cn.contains("code.review") || cn.contains("github")) {
-                looksLikeCodeReview = true;
-                break;
-            }
-        }
-        boolean isPrCommentField = inEditorTextField && looksLikeCodeReview;
-
-        return isDiff || isPrCommentField;
+        VirtualFile file = CommonDataKeys.VIRTUAL_FILE.getData(dataContext);
+        return file != null && "md".equalsIgnoreCase(file.getExtension());
     }
 
     @Override
