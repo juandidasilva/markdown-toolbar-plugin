@@ -7,7 +7,6 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.command.WriteCommandAction;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +16,8 @@ import java.util.function.Function;
 public abstract class AbstractLineAction extends AbstractMdAction {
 
     protected void transformLines(@NotNull AnActionEvent e, @NotNull Function<String, String> op) {
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
+        Editor editor = resolveEditor(e);
+        if (editor == null) return;
         Project project = e.getProject();
         if (project == null) return;
         Caret caret = editor.getCaretModel().getCurrentCaret();

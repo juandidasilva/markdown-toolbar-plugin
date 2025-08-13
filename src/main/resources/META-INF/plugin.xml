@@ -91,5 +91,10 @@
       <add-to-group group-id="MDGFM.Toolbar.Markdown" anchor="last" />
       <add-to-group group-id="MDGFM.Toolbar.PR.More" anchor="last" />
     </action>
+
+    <!-- Fallback popup action (useful if toolbar embedding fails in PR comments) -->
+    <action id="MDGFM.PR.ToolbarPopup" class="com.example.mdgfm.PRToolbarPopupAction" text="Show Markdown PR Toolbar">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt M" />
+    </action>
   </actions>
 </idea-plugin>
