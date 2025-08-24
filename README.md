@@ -7,7 +7,6 @@ Master your code reviews and documentation with an intuitive toolbar that appear
 
 - **Speed up your workflow**: Forget complicated shortcuts—format your Markdown with a single click.
 - **Make your PRs shine**: Clear, well-formatted comments help your ideas stand out in every review.
-- **Join a growing community**: Many developers have already simplified their code review experience, your feedback can help shape the future.
 
 ## Key Features
 
@@ -42,5 +41,5 @@ Master your code reviews and documentation with an intuitive toolbar that appear
 
 ## Contribute and Make It Yours
 
-We value every comment, issue, and pull request. Tell us what you need and let’s build the best Markdown experience together.
-Your feedback guides the evolution of this project.
+Let's build it together. Your feedback guides the evolution of this project. All comments, incidents, and pull request are welcome.
+
